@@ -2,4 +2,5 @@
 This is my shader study from game [balatro](https://www.playbalatro.com/) 
 
 # Polychrome
-![image](https://github.com/user-attachments/assets/67016f15-df74-4411-b9f8-752c55463b31)
+https://github.com/user-attachments/assets/48575a48-69c8-4875-b22b-9a1f4de3b132
+
