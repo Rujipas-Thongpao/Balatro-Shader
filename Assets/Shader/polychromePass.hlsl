@@ -53,16 +53,28 @@ float4 frag (v2f input) : SV_Target
 	float3 viewDirection = normalize(_WorldSpaceCameraPos - input.positionWS);
 	float3 fake_normal = input.normalWS + perlinNoise(input.uv);
 	float d = abs(dot(viewDirection, fake_normal));
-	d *= _Scale; 
-	d %= 1.;
-	d *= 7;
-	d = floor(d);
-	float4 poly = float4(cols[d]/255,_Opacity);
+
+	d *= 7 * _Scale; 
+	d %= 7;
+
+	float lower = floor(d);
+	float upper = ceil(d);
+
+	float3 lowerCol = cols[lower%7]/255;
+	float3 upperCol = cols[upper%7]/255;
+
+	float4 polyCol = (0.,0.,0.,1.);
+	polyCol.r = lerp(lowerCol.x, upperCol.x,frac(d) );
+	polyCol.g = lerp(lowerCol.y, upperCol.y,frac(d) );
+	polyCol.b = lerp(lowerCol.z, upperCol.z,frac(d) );
 
 	if(distance(col, 1.)>=.8){
-		col *= poly;
+		col *= polyCol;
 	}
-	return col ;
+
+	return col;
+	
+
 }
 
 #endif
