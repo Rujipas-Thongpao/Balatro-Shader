@@ -13,6 +13,7 @@ Shader "Unlit/Polychrome"
 
         Pass
         {
+            Name "Polychrome Pass"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
